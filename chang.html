@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+<link rel="stylesheet"  type="text/css" href="{% static 'css/chang.css' %}" /> 
+</head>
+<body>
+
+<div class="topnav">
+    <a class="active" href="">Home</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+</div>
+
+
+<div>
+  <header>
+      <h1 class="title">Remove Image</h1>
+      <h1 class="title">background</h1>
+  </header>
+
+
+    
+    <div class="slideshow-container" style="float:left;width:50%">
+
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 2</div>
+        <img src="{% static 'images/colorcar.jpg' %}" style="width:100%">
+        
+      </div>
+      
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 2</div>
+        <img src="{% static 'images/car.jpg' %}" style="width:100%">
+        
+      </div>
+      <br>
+      <div style="text-align:center">
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+      </div>
+    </div>
+    
+    <div class="card" style="float:right;width:50%">
+      <i class="fa fa-cloud-upload" style="font-size: 200px;"></i>
+        <h1 style="font-size:40px">Upload Image</h1>
+        <form enctype="multipart/form-data" action="" method="post" name="shy">   
+          <div class="filebox" style="width:30%">
+            {% csrf_token %}
+            <input type="file" name=photo required id="id_photo" onchange=aa()>
+          </div>
+        </form> 
+        
+    </div>
+  </div>
+
+
+<script>
+  var slideIndex = 0;
+  showSlides();
+  function aa(){
+      if(document.shy.photo.value != ""){
+
+          document.shy.action = "";
+
+          document.shy.submit();
+
+      }
+  }
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+  }
+  </script>
+
+
+</body>
+</html>

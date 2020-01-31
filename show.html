@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+        <script src="{% static 'bootstrap.min.js' %}"></script>
+        <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+        <style>
+            body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+h1{
+    font-size: 4rem;
+    font-weight:900;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color:#151515;
+  
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #0a0f91;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+* {box-sizing: border-box;}
+
+.img-comp-container {
+  position: relative;
+  min-width:1000;
+  left:35%;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  vertical-align:middle;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+
+.btn {
+      display:block;
+      position: relative;
+  background-color: DodgerBlue;
+  z-index: 10;
+  display: block;
+  top:0;
+  margin-top:2%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:auto;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom:5%;
+ 
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(21, 72, 226);
+}
+
+.box{
+  position:absolute;
+  width: 1px; height: 1px;
+  left: 0; right: 0;
+  margin-left:auto; margin-right:auto;
+  border:1px solid;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  float:none;
+}
+
+* {
+  box-sizing: border-box;
+}
+  .footer {
+  padding: 20px;
+  text-align: center;
+  background: rgb(7, 2, 36);
+  width:100%;
+  margin-top:10%;
+  position:relative;
+  bottom:0;
+  color:white;
+  float:none;
+}
+
+.logo{
+  font-size: 3vw;
+  font-family: fantasy;
+  text-align: center;
+}
+.container {
+  position: relative;
+  width: 25%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  margin:0 auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 94%;
+  width: 94%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+.glow {
+  margin-top:5%;
+  margin-bottom:3%;
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #023613, 0 0 40px #023613, 0 0 50px #023613, 0 0 60px #023613, 0 0 70px #023613;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #023613, 0 0 40px #023613, 0 0 50px #023613, 0 0 60px #023613, 0 0 70px #023613, 0 0 80px #023613;
+  }
+}
+.glow1 {
+  margin-bottom:1%;
+  font-size: 45px;
+  font-family: fantasy;
+  color: black;
+  text-align: center;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #038b30, 0 0 40px #038b30, 0 0 50px #038b30, 0 0 60px #038b30, 0 0 70px #038b30;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #038b30, 0 0 40px #038b30, 0 0 50px #038b30, 0 0 60px #038b30, 0 0 70px #038b30, 0 0 80px #038b30;
+  }
+}
+
+
+
+</style>
+<script>
+    function initComparisons() {
+      var x, i;
+      /*find all elements with an "overlay" class:*/
+      x = document.getElementsByClassName("img-comp-overlay");
+      for (i = 0; i < x.length; i++) {
+        /*once for each "overlay" element:
+        pass the "overlay" element as a parameter when executing the compareImages function:*/
+        compareImages(x[i]);
+      }
+      function compareImages(img) {
+        var slider, img, clicked = 0, w, h;
+        /*get the width and height of the img element*/
+        w = img.offsetWidth;
+        h = img.offsetHeight;
+        /*set the width of the img element to 50%:*/
+        img.style.width = (w / 2) + "px";
+        /*create slider:*/
+        slider = document.createElement("DIV");
+        slider.setAttribute("class", "img-comp-slider");
+        /*insert slider*/
+        img.parentElement.insertBefore(slider, img);
+        /*position the slider in the middle:*/
+        slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+        slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+        /*execute a function when the mouse button is pressed:*/
+        slider.addEventListener("mousedown", slideReady);
+        /*and another function when the mouse button is released:*/
+        window.addEventListener("mouseup", slideFinish);
+        /*or touched (for touch screens:*/
+        slider.addEventListener("touchstart", slideReady);
+        /*and released (for touch screens:*/
+        window.addEventListener("touchstop", slideFinish);
+        function slideReady(e) {
+          /*prevent any other actions that may occur when moving over the image:*/
+          e.preventDefault();
+          /*the slider is now clicked and ready to move:*/
+          clicked = 1;
+          /*execute a function when the slider is moved:*/
+          window.addEventListener("mousemove", slideMove);
+          window.addEventListener("touchmove", slideMove);
+        }
+        function slideFinish() {
+          /*the slider is no longer clicked:*/
+          clicked = 0;
+        }
+        function slideMove(e) {
+          var pos;
+          /*if the slider is no longer clicked, exit this function:*/
+          if (clicked == 0) return false;
+          /*get the cursor's x position:*/
+          pos = getCursorPos(e)
+          /*prevent the slider from being positioned outside the image:*/
+          if (pos < 0) pos = 0;
+          if (pos > w) pos = w;
+          /*execute a function that will resize the overlay image according to the cursor:*/
+          slide(pos);
+        }
+        function getCursorPos(e) {
+          var a, x = 0;
+          e = e || window.event;
+          /*get the x positions of the image:*/
+          a = img.getBoundingClientRect();
+          /*calculate the cursor's x coordinate, relative to the image:*/
+          x = e.pageX - a.left;
+          /*consider any page scrolling:*/
+          x = x - window.pageXOffset;
+          return x;
+        }
+        function slide(x) {
+          /*resize the image:*/
+          img.style.width = x + "px";
+          /*position the slider:*/
+          slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+        }
+      }
+    }
+    </script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="/blog"><i class="fa fa-eraser" style="font-size:16px"></i>Bg crop</a>
+            <a href="/mem">member</a>
+            
+        </div>
+
+        <h1 class="glow">Bg Drop</h1>
+        
+       <p class="glow1">put your cursor on picture</p> 
+       <p class="glow1">compare origin photo and bg-crop's photo</p>
+       <br>
+      <div class="container">
+        <img src="{% static source %}" class="image" style="width:101%">
+        <div class="overlay">
+          <img src="{% static source1 %}" class="image" style="width:100%">
+        </div>
+      </div>
+      
+      <br>
+      <br>  
+    
+      <div>
+        <a href="download">
+            <button class="btn" style="width: 300px"><i class="fa fa-download"></i> Download</button>
+           </a>
+    </div> 
+  
+        
+      
+          
+       
+
+        
+        <div class="footer">
+          <i class="fa fa-eraser" style="font-size:5vw;"></i>
+          <h class="logo">Bg Crop</h>
+          <p style="font-size: x-large;">Copyright Ko-company - All rights reserved</p>
+          <p>service right:Ko Ha shin designed: acting happiness</p>
+        </div>
+          
+      
+      <script>
+      /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+      initComparisons();
+      </script>
+    </body>
+
+</html>
